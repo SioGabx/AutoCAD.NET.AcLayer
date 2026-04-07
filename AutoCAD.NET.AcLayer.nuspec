@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
     <id>AutoCAD.NET.AcLayer</id>
-    <version>21.0.1</version>
+    <version>21.0.2</version>
     <title>AutoCAD .NET AcLayer</title>
     <authors>SioGabx</authors>
     <owners>Autodesk</owners>
@@ -22,8 +22,7 @@
   <files>
   <file src="README.md" target="\" />
   <file src="LICENSE.md" target="\" />
-    <file src="lib\net47\AcLayer.dll" target="lib\net47\" />
-    
-  <file src="build\AutoCAD.NET.AcLayer.targets" target="build\" />
+    <file src="lib\**\*.*" target="lib" />
+  <file src="tools\*.*" target="tools" />
   </files>
 </package>
