@@ -22,7 +22,7 @@ Default target : **.NET Framework 4.7.2** (AutoCAD 2021 to 2024).
 Do not forget to set the **Copy Local** property to **False** for this reference in Visual Studio.
 
 ## ⚖️ Crédits et Licence
-* **Maintained by :** SioGabx
-* **Copyright :** Autodesk
+* **Maintained by : ** SioGabx
+* **Copyright : ** Autodesk
 
 **Disclaimer: This project is not affiliated with, sponsored by, or endorsed by Autodesk. All rights to the original AcLayer.dll library and AutoCAD trademarks belong to Autodesk, Inc.**
