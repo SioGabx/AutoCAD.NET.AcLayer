@@ -1,0 +1,9 @@
+# Ignorer les exécutables (comme nuget.exe téléchargé par le script)
+*.exe
+
+# Ignorer les paquets NuGet générés
+*.nupkg
+
+# Ignorer les dossiers temporaires ou de cache NuGet (au cas où)
+.nuget/
+packages/
