@@ -54,6 +54,9 @@ jobs:
           if gh release view "$TAG" >/dev/null 2>&1; then
             echo "La release existe → Upload des assets"
             
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            
             git tag -fa "$TAG" -m "Mise à jour du tag $TAG"
             git push origin -f refs/tags/"$TAG"
             
