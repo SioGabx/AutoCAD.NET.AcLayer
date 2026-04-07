@@ -13,7 +13,7 @@
     <copyright>Copyright Autodesk</copyright>
     <tags>autocad layer aclayer autodesk net plugin</tags>
     <readme>README.md</readme>
-	
+	<license type="file">LICENSE.md</license>
 	<dependencies>
       <group targetFramework=".NETFramework4.7" />
     </dependencies>
@@ -21,6 +21,7 @@
   
   <files>
   <file src="README.md" target="\" />
+  <file src="LICENSE.md" target="\" />
     <file src="lib\net47\AcLayer.dll" target="lib\net47\" />
   </files>
 </package>
