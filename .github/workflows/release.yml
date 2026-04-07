@@ -1,0 +1,60 @@
+name: Build and Release NuGet Package
+
+on: [push] # Se déclenche à chaque push sur toutes les branches
+
+jobs:
+  build-and-release:
+    runs-on: windows-latest
+    
+    # Permissions nécessaires pour créer/modifier une release avec la CLI GitHub
+    permissions:
+      contents: write 
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup NuGet
+        uses: NuGet/setup-nuget@v2.0.0
+
+      - name: Get version from nuspec
+        id: get_version
+        shell: powershell
+        run: |
+          [xml]$nuspec = Get-Content AutoCAD.NET.AcLayer.nuspec
+          $version = $nuspec.package.metadata.version
+          echo "VERSION=$version" >> $env:GITHUB_OUTPUT
+
+      - name: Build NuGet Package
+        run: nuget pack AutoCAD.NET.AcLayer.nuspec
+
+      - name: Create or update GitHub Release
+        shell: bash
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          TAG="v${{ steps.get_version.outputs.VERSION }}"
+          echo "Using tag: $TAG"
+
+          # Recherche du fichier .nupkg à la racine du projet
+          # On utilise ls et on récupère le nom du fichier généré
+          FILES=$(ls *.nupkg 2>/dev/null || true)
+          
+          # Nettoyage des espaces potentiels
+          FILES=$(echo $FILES | xargs)
+
+          if [ -z "$FILES" ]; then
+            echo "❌ Aucun fichier .nupkg trouvé !"
+            exit 1
+          fi
+
+          echo "✅ Fichier trouvé : $FILES"
+
+          # Vérifie si la release existe déjà
+          if gh release view "$TAG" >/dev/null 2>&1; then
+            echo "La release existe → Upload des assets"
+            gh release upload "$TAG" $FILES --clobber
+          else
+            echo "Création d'une nouvelle release"
+            gh release create "$TAG" $FILES --title="$TAG" --notes="Paquet NuGet AutoCAD.NET.AcLayer version ${{ steps.get_version.outputs.VERSION }}."
+          fi
