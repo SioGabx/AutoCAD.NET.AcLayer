@@ -24,4 +24,5 @@
   <file src="LICENSE.md" target="\" />
     <file src="lib\net47\AcLayer.dll" target="lib\net47\" />
   </files>
+  <file src="AutoCAD.NET.AcLayer.targets" target="build\" />
 </package>

@@ -1,0 +1,9 @@
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Target Name="PreventAcLayerCopyLocal" AfterTargets="ResolveAssemblyReferences">
+    <ItemGroup>
+      <ReferencePath Condition="'%(FileName)' == 'AcLayer'">
+        <Private>False</Private>
+      </ReferencePath>
+    </ItemGroup>
+  </Target>
+</Project>
