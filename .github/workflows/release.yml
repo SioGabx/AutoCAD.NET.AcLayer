@@ -53,6 +53,14 @@ jobs:
           # Vérifie si la release existe déjà
           if gh release view "$TAG" >/dev/null 2>&1; then
             echo "La release existe → Upload des assets"
+            
+            git tag -fa "$TAG" -m "Mise à jour du tag $TAG"
+            git push origin -f refs/tags/"$TAG"
+            
+            # 2. Met à jour le titre et la description
+            gh release edit "$TAG" --title="$TAG" --notes="Paquet NuGet AutoCAD.NET.AcLayer version ${{ steps.get_version.outputs.VERSION }}."
+            
+            # 3. Upload et écrase l'ancien fichier .nupkg
             gh release upload "$TAG" $FILES --clobber
           else
             echo "Création d'une nouvelle release"
