@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
     <id>AutoCAD.NET.AcLayer</id>
-    <version>21.0.0</version>
+    <version>21.0.1</version>
     <title>AutoCAD .NET AcLayer</title>
     <authors>SioGabx</authors>
     <owners>Autodesk</owners>
